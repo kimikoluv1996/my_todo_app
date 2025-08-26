@@ -6,6 +6,20 @@
 </head>
 <body>
     <h1>My TODO App</h1>
-    <form action="" method="get"><input type="text"><button type="button">add</button></form>
+    <form method="post">
+        <input type="text" name="task" placeholder="Enter a new task">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul>
+    {% for task in tasks %}
+        <li style="{% if task.completed %}text-decoration: line-through;{% endif %}">
+            {{task.task}}
+            <a href="{{ url_for('complete', task_id=task.id) }}">
+                [Toggle Complete]
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
